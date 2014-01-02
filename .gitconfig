@@ -1,0 +1,29 @@
+[user]
+	name = Nate Brown
+	email = nbrown.us@gmail.com
+[color]
+	ui = true
+
+[alias]
+	co = checkout
+	stat = status
+	st = status -- .
+	ba = !git branch -avv
+	hist = !git --no-pager log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short -20
+	history = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	dc = diff --cached
+
+[status]
+	submodulesummary = true
+
+[push]
+	default = current 
+
+[diff]
+	renames = true
+	noprefix = true
+
+[format]
+	pretty = fuller
+[core]
+	excludesfile = ~/.gitignore_global
