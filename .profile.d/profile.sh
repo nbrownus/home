@@ -7,3 +7,7 @@ export GIT_PS1_SHOWSTASHSTATE=true
 export GIT_PS1_SHOWCOLORHINTS=true
 export GIT_PS1_SHOWUNTRACKEDFILES=true
 export GIT_PS1_SHOWUPSTREAM="auto"
+
+function bt {
+    echo -ne "\033]0;"$*"\007"
+}
