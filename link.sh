@@ -1,20 +1,23 @@
 #!/bin/bash
 
-# Links all files in this dir into your home dir, preserving originals if they were actual files
-
-for file in .*; do
-    if [ $file == ".git" ] || [ $file == "." ] || [ $file == ".." ]; then
-        continue
+# make our target directories
+for dir in $(find . -type d -not -path "./.git*" -not -path "."); do
+    # rename existing symlink targets so we can make our own
+    if [ -h "$HOME/$dir" ]; then
+        echo "Removing existing link $HOME/$dir"
+        rm "$HOME/$dir"
     fi
 
-    if [ -d "$file" ] && [ -d "$HOME/$file" ] || [ -e "$HOME/$file" ]; then
-        echo "Moving original $HOME/$file to $HOME/$file.old"
-        mv "$HOME/$file" "$HOME/$file.old"
-    elif [ -h "$HOME/$file" ]; then
-        echo "Removing original link $HOME/$file"
-        rm "$HOME/$file"
+    mkdir -p "$HOME/$dir"
+done
+
+# link our files to the target directories
+for file in $(find . -type f -not -path "./.git/*" -not -path "./README.md" -not -path "./link.sh"); do
+    if [ -f "$HOME/$file" ] && [ ! -h "$HOME/$file" ]; then
+        echo "Backing up $HOME/$file -> $HOME/$file.orig"
+        mv "$HOME/$file" "$HOME/$file.orig"
     fi
 
-    echo "Linking $file to $HOME/$file"
-    ln -s "$PWD/$file" "$HOME/"
+    echo "Linking: $PWD/$file -> $HOME/$file"
+    ln -sf "$PWD/$file" "$HOME/$file"
 done
