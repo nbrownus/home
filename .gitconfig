@@ -5,6 +5,7 @@
 	ui = true
 
 [alias]
+	ci = !git commit -m
 	co = checkout
 	st = status -- .
 	ba = !git branch -avv
