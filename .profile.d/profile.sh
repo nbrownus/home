@@ -24,3 +24,7 @@ export GIT_PS1_SHOWUPSTREAM="auto"
 function bt {
     echo -ne "\033]0;"$*"\007"
 }
+
+function vbp {
+    nohup VBoxHeadless -startvm "Ubuntu 12.04 Puppet" &
+}
