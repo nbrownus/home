@@ -6,6 +6,10 @@ export CLICOLOR=1
 export TERM="xterm-color"
 export GREP_OPTIONS='--color=auto -r'
 
+alia sls='ls -G'
+alias ll='ls -lG'
+alias la='ls -lGa'
+
 POINTER_CHAR="⬆"
 PREINFO="\n$POINTER_CHAR $BIBLUE[ "$BICYAN"exit: $BIWHITE\$?$BIBLUE ] [ "$BICYAN"time: $BIWHITE\t$BIBLUE ]$END_COLOR"
 PREGIT="$PREINFO\n$BIWHITE\u$BIBLUE@$BIRED\h$BIWHITE \w$END_COLOR"
@@ -30,3 +34,4 @@ function bt {
 function vbp {
     nohup VBoxHeadless -startvm "Ubuntu 12.04 Puppet" &
 }
+
