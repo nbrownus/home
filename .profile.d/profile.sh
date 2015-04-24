@@ -4,9 +4,9 @@
 
 export CLICOLOR=1
 export TERM="xterm-color"
-export GREP_OPTIONS='--color=auto -r'
+export GREP_OPTIONS='--color=auto -r --exclude-dir .git --exclude-dir .idea'
 
-alia sls='ls -G'
+alias ls='ls -G'
 alias ll='ls -lG'
 alias la='ls -lGa'
 
@@ -35,3 +35,11 @@ function vbp {
     nohup VBoxHeadless -startvm "Ubuntu 12.04 Puppet" &
 }
 
+eval $(ssh-agent)
+
+function cleanup {
+    echo "Killing SSH-Agent"
+    kill -9 $SSH_AGENT_PID
+}
+
+trap cleanup EXIT

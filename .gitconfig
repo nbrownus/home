@@ -6,6 +6,7 @@
 
 [alias]
 	ci = !git commit -m
+	ca = !git commit --amend --no-edit
 	co = checkout
 	st = status -- .
 	ba = !git branch -avv
